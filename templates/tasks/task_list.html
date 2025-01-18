@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Your Tasks{% endblock %}
+{% block content %}
+<h2>Your Tasks</h2>
+<div style="display: flex; justify-content: space-between; align-items: center;">
+  <p>Manage your daily tasks below.</p>
+  <a href="{% url 'task_create' %}" class="md-button">Create a New Task</a>
+</div>
+
+<ul class="md-list">
+  {% for task in tasks %}
+    <li class="md-list-item">
+      <div class="md-list-item-title">
+        {% if task.completed %}
+          <del>{{ task.title }}</del>
+        {% else %}
+          {{ task.title }}
+        {% endif %}
+        {% if task.due_date %}
+          <span class="text-muted" style="margin-left: 0.5rem;">(Due: {{ task.due_date }})</span>
+        {% endif %}
+      </div>
+      <div>
+        <a href="{% url 'task_detail' task.id %}" class="md-link">View</a>
+        <a href="{% url 'task_update' task.id %}" class="md-link">Edit</a>
+        <a href="{% url 'task_delete' task.id %}" class="md-link" style="color: var(--md-color-error);">Delete</a>
+      </div>
+    </li>
+  {% empty %}
+    <p>No tasks yet. <a href="{% url 'task_create' %}" class="md-link">Create one</a>.</p>
+  {% endfor %}
+</ul>
+{% endblock %}

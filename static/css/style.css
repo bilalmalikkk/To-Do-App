@@ -1,0 +1,237 @@
+
+/* ===================================== */
+/* 1. Color & Theme Variables            */
+/* ===================================== */
+:root {
+  --md-color-primary: #6200ee;       /* Material Purple 500 */
+  --md-color-primary-variant: #3700b3; 
+  --md-color-on-primary: #ffffff;    /* White text on primary */
+
+  --md-color-surface: #ffffff;       /* White surface */
+  --md-color-on-surface: #000000;    /* Black text on surface */
+
+  --md-color-background: #f4f4f4;    /* Light gray background */
+  --md-color-error: #b00020;         /* Material Red error */
+  
+  --md-shadow-elevation-1: 0px 2px 4px rgba(0, 0, 0, 0.15);
+  --md-shadow-elevation-2: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ===================================== */
+/* 2. Global Reset & Body                */
+/* ===================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--md-color-background);
+  color: var(--md-color-on-surface);
+  line-height: 1.5;
+}
+
+/* ===================================== */
+/* 3. App Bar (Navbar)                   */
+/* ===================================== */
+.md-app-bar {
+  background-color: var(--md-color-primary);
+  padding: 1rem;
+  box-shadow: var(--md-shadow-elevation-2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.md-app-bar a {
+  color: var(--md-color-on-primary);
+  text-decoration: none;
+  margin-right: 1rem;
+  font-weight: 500;
+}
+
+.md-app-bar a:hover {
+  text-decoration: underline;
+}
+
+/* ===================================== */
+/* 4. Container / Layout                 */
+/* ===================================== */
+.md-container {
+  width: 90%;
+  max-width: 800px;
+  margin: 2rem auto;
+  background-color: var(--md-color-surface);
+  box-shadow: var(--md-shadow-elevation-1);
+  border-radius: 8px;
+  padding: 2rem;
+}
+
+/* Headings */
+h2 {
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+/* ===================================== */
+/* 5. Buttons                            */
+/* ===================================== */
+.md-button {
+  position: relative;
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background-color: var(--md-color-primary);
+  color: var(--md-color-on-primary);
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;  /* for ripple */
+  transition: background-color 0.2s ease;
+  margin-top: 1rem;
+}
+
+.md-button:hover {
+  background-color: var(--md-color-primary-variant);
+}
+
+/* Ripple-like effect */
+.md-button::after {
+  content: "";
+  position: absolute;
+  background: rgba(255,255,255,0.5);
+  border-radius: 50%;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: width 0.3s ease, height 0.3s ease, opacity 0.5s ease;
+}
+
+.md-button:active::after {
+  width: 120px;
+  height: 120px;
+  opacity: 0.3;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Text link style */
+.md-link {
+  background: none;
+  color: var(--md-color-primary);
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+
+.md-link:hover {
+  text-decoration: underline;
+  color: var(--md-color-primary-variant);
+}
+
+/* ===================================== */
+/* 6. Form Elements                      */
+/* ===================================== */
+form {
+  margin-top: 1rem;
+}
+
+label {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* ===================================== */
+/* 7. Alerts & Error Handling            */
+/* ===================================== */
+.alert {
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+}
+
+.alert-danger {
+  background-color: #fdecea;
+  color: #b00020;
+  border: 1px solid #f5c6cb;
+}
+
+/* ===================================== */
+/* 8. Lists & Cards                      */
+/* ===================================== */
+.md-list {
+  list-style: none;
+  margin-top: 1rem;
+}
+
+.md-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--md-color-surface);
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  box-shadow: var(--md-shadow-elevation-1);
+}
+
+.md-list-item-title {
+  display: flex;
+  align-items: center;
+}
+
+.md-list-item-title del {
+  color: #888;
+}
+
+/* Card */
+.md-card {
+  background-color: var(--md-color-surface);
+  border-radius: 6px;
+  padding: 1rem 1.5rem;
+  box-shadow: var(--md-shadow-elevation-1);
+  margin-bottom: 1.5rem;
+}
+
+.md-card h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--md-color-on-surface);
+}
+
+.text-muted {
+  font-size: 0.85rem;
+  color: #999;
+}
+
+.error-text {
+  color: var(--md-color-error);
+}
+
+/* Extra spacing for certain elements */
+.mt-1 { margin-top: 1rem; }
+.mt-2 { margin-top: 2rem; }
+.mb-1 { margin-bottom: 1rem; }
+.mb-2 { margin-bottom: 2rem; }

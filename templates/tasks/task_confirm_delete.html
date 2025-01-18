@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Delete Task{% endblock %}
+{% block content %}
+<h2>Are you sure you want to delete this task?</h2>
+
+<div class="md-card">
+  <p style="font-weight: 500; color: #666;">{{ task.title }}</p>
+</div>
+
+<form method="POST">
+  {% csrf_token %}
+  <button type="submit" class="md-button" style="background-color: var(--md-color-error);">
+    Yes, Delete
+  </button>
+  <a href="{% url 'task_list' %}" class="md-link">Cancel</a>
+</form>
+{% endblock %}

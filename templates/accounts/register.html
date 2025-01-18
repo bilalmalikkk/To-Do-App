@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<h2>Register</h2>
+
+{% if form.errors %}
+  <div class="alert alert-danger">
+    <ul>
+      {% for field_errors in form.errors.values %}
+        {% for error in field_errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}
+
+<form method="POST">
+  {% csrf_token %}
+  
+  <label for="id_username">Username</label>
+  {{ form.username }}
+
+  <label for="id_password1">Password</label>
+  {{ form.password1 }}
+
+  <label for="id_password2">Confirm Password</label>
+  {{ form.password2 }}
+
+  <button type="submit" class="md-button">Sign Up</button>
+  <a href="{% url 'login' %}" class="md-link">Already have an account? Login</a>
+</form>
+{% endblock %}
